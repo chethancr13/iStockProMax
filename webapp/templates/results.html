@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Results</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Prediction Results</h1>
+        <p><strong>Future Date:</strong> {{ result['future_date'] }}</p>
+        <p><strong>Predicted Price:</strong> ${{ result['predicted_price'] }}</p>
+        <p><strong>Percentage Change:</strong> {{ result['percentage_change'] }}%</p>
+        <p><strong>Movement:</strong> {{ result['movement'] }}</p>
+        <a href="/">Make Another Prediction</a>
+    </div>
+</body>
+</html>
