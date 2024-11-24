@@ -63,7 +63,7 @@ def predict_stock_movement(stock_data, model, input_date, features):
             predicted_price = model.predict(last_available_day_data)[0]
             last_available_day_data = np.array([predicted_price] + list(last_available_day_data[0][1:])).reshape(1, -1)
     last_price = stock_data['Close'].iloc[-1]
-    percentage_change = ((predicted_price - last_price) / last_price) * 100
+    percentage_change = float(((predicted_price - last_price)) / last_price) * 100
     movement = 'Up' if percentage_change > 0 else 'Down'
     return {
         "future_date": input_date,
