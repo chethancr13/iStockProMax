@@ -9,11 +9,16 @@
 <body>
     <div class="container">
         <h1>Prediction Results</h1>
-        <p><strong>Future Date:</strong> {{ result['future_date'] }}</p>
-        <p><strong>Predicted Price:</strong> ${{ result['predicted_price'] }}</p>
-        <p><strong>Percentage Change:</strong> {{ result['percentage_change'] }}%</p>
-        <p><strong>Movement:</strong> {{ result['movement'] }}</p>
-        <a href="/">Make Another Prediction</a>
+        {% if result.error %}
+            <p class="error-message"><strong>Error:</strong> {{ result.error }}</p>
+        {% else %}
+            <p><strong>Future Date:</strong> {{ result['future_date'] }}</p>
+            <p><strong>Company:</strong> {{ result['company_name'] }}</p>
+            <p><strong>Predicted Price:</strong> ${{ result['predicted_price'] }}</p>
+            <p><strong>Percentage Change:</strong> {{ result['percentage_change'] }}%</p>
+            <p><strong>Movement:</strong> {{ result['movement'] }}</p>
+        {% endif %}
+        <a href="/" class="button">Make Another Prediction</a>
     </div>
 </body>
 </html>

@@ -10,13 +10,20 @@
     <div class="container">
         <h1>Stocle</h1>
         <form action="/results" method="POST">
-            <h2>Enter Date Range</h2>
+            <h2>Enter Details for Stock Prediction</h2>
+            
+            <!-- Company Name Input -->
+            <label for="company_name">Company Ticker:</label>
+            <input type="text" id="company_name" name="company_name" placeholder="e.g., AAPL, TSLA" required>
+            
+            <!-- Date Range Inputs -->
             <label for="start_year">Start Year:</label>
             <input type="text" id="start_year" name="start_year" placeholder="e.g., 2020" required>
             
             <label for="end_year">End Year:</label>
             <input type="text" id="end_year" name="end_year" placeholder="e.g., 2023" required>
             
+            <!-- Future Prediction Date -->
             <label for="future_date">Predict for Future Date:</label>
             <input type="text" id="future_date" name="future_date" placeholder="DD/MM/YYYY" required>
             
