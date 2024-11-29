@@ -69,7 +69,7 @@ def predict_stock_movement(stock_data, model, input_date, features, company_name
             predicted_price = last_row['Close']  # Placeholder for now
             
         last_price = stock_data['Close'].iloc[-1]
-        percentage_change = ((predicted_price - last_price) / last_price) * 100
+        percentage_change = float((predicted_price - last_price) / last_price) * 100
         movement = "Up" if percentage_change > 0 else "Down"
         
         return {
