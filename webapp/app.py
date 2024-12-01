@@ -14,11 +14,10 @@ chrome_options = webdriver.ChromeOptions()
 chrome_options.add_experimental_option("detach", True)
 
 driver = webdriver.Chrome(options=chrome_options)
-driver.get("https://investor.apple.com/stock-price/default.aspx")
+driver.get("https://investor.apple.com/stock-price/")
 
 data = driver.find_element(By.XPATH, value='//*[@id="_ctrl0_ctl42_divModuleContainer"]/div/div/div/div[2]/div[2]/span')
-change = driver.find_element(By.XPATH,
-                             value='//*[@id="_ctrl0_ctl42_divModuleContainer"]/div/div/div/div[2]/div[3]/span/span')
+change = driver.find_element(By.XPATH, value='//*[@id="_ctrl0_ctl42_divModuleContainer"]/div/div/div/div[2]/div[3]/span/span')
 dprice = data.text
 dchange = change.text
 
