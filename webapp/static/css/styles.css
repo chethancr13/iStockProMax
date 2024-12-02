@@ -26,11 +26,11 @@ nav{
 }
 
 header{
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("https://images.unsplash.com/photo-1561740868-f9741f389203?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D") no-repeat center;
+    background: linear-gradient(light-dark(rgba(255, 255, 255, .1), rgba(0, 0, 0, 0.7)), light-dark(rgba(255, 255, 255, .1), rgba(0, 0, 0, 0.7))), url("https://images.unsplash.com/photo-1561740868-f9741f389203?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D") no-repeat center;
     background-size: cover;
     color: white;
-    text-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, 0.7);
-    box-shadow: inset 0 0 5rem rgba(0, 0, 0, 0.7);
+    text-shadow: 0 0.05rem 0.1rem light-dark(rgba(255, 255, 255, .1), rgba(0, 0, 0, 0.7));
+    box-shadow: inset 0 0 5rem light-dark(rgba(255, 255, 255, .1), rgba(0, 0, 0, 0.7));
     padding: 1em 2em;
     margin-top: .8em;
     font-size: 5rem;
@@ -39,6 +39,7 @@ header{
 
 header p{
     margin: 0;
+    text-shadow: 0 0 1em light-dark(rgba(0, 0, 0, 1), none);
 }
 
 section{
@@ -54,13 +55,14 @@ section{
 }
 
 .info h1{
-    margin: 0 0 0 0;
+    margin: 0 0 .5em 0;
     font-size: 4rem;
     font-weight: 400;
 }
 
 .info p{
     margin: 0 0 0 0;
+    font-size: 1.4rem;
 }
 
 .price{
@@ -89,6 +91,15 @@ section{
 .price .closed-price{
     font-size: 3rem;
     margin: 0;
+}
+
+.price .company{
+    margin-top: .5em;
+    font-size: 1rem;
+}
+
+.price .company-name{
+    font-size: 3rem;
 }
 
 .future{
@@ -179,4 +190,140 @@ footer{
     color: light-dark(#939393, #505050);
     font-size: .8rem;
     font-weight: 500;
+}
+
+@media (max-width: 1460px) {
+    input{
+        width: 100%;
+    }
+}
+
+@media (max-width: 1210px) {
+    section, .future-input, .prediction{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .info{
+        margin-bottom: 1em;
+    }
+
+    .info h1{
+        margin: 0;
+    }
+
+    .info p{
+        font-size: 1rem;
+    }
+
+    .price{
+        text-align: left;
+    }
+
+    .price strong{
+        text-align: center;
+    }
+
+    input{
+        width: 90%;
+    }
+
+    .input1{
+        margin-bottom: .7em;
+    }
+
+    output{
+        width: 100%;
+        margin-bottom: 1em;
+        border-radius: .5em;
+    }
+    .prediction{
+        columns: 10em;
+    }
+}
+
+@media (max-width: 940px) {
+    
+    .future, section, nav{
+        padding: 1em 4em;
+    }
+
+    header{
+        padding: .5em .8em;
+    }
+    
+    .info{
+        margin-bottom: 1em;
+    }
+
+    .info h1{
+        margin: 0;
+    }
+
+    .info p{
+        font-size: 1rem;
+    }
+    
+    input{
+        width: 90%;
+    }
+
+    .input1{
+        margin-bottom: .7em;
+    }
+
+    footer{
+        padding: 1em 4em;
+    }
+
+    .future{
+        padding-top: 0;
+    }
+
+    .future h2{
+        margin: 0em 0 .2em 0;
+    }
+}
+
+@media (max-width: 650px) {
+
+    .future, section, nav{
+        padding: 1em 2em;
+    }
+
+    header{
+        padding: .5em .4em;
+    }
+
+    .info{
+        margin-bottom: 1em;
+    }
+
+    .info h1{
+        margin: 0;
+    }
+    
+    .info p{
+        font-size: 1rem;
+    }
+
+    .future{
+        padding-top: 0;
+    }
+
+    .future h2{
+        margin: 0em 0 .2em 0;
+    }
+
+    input{
+        width: 90%;
+    }
+
+    .input1{
+        margin-bottom: .5em;
+    }
+
+    footer{
+        padding: 1em 2em;
+    }
 }

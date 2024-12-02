@@ -1,28 +1,3 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prediction Results</title>
-    <link rel="stylesheet" href="/static/css/styles.css">
-</head>
-<body>
-    <div class="container">
-        <h1>Prediction Results</h1>
-        {% if result.error %}
-            <p class="error-message"><strong>Error:</strong> {{ result.error }}</p>
-        {% else %}
-            <p><strong>Future Date:</strong> {{ result['future_date'] }}</p>
-            <p><strong>Company:</strong> {{ result['company_name'] }}</p>
-            <p><strong>Predicted Price:</strong> ${{ result['predicted_price'] }}</p>
-            <p><strong>Percentage Change:</strong> {{ result['percentage_change'] }}%</p>
-            <p><strong>Movement:</strong> {{ result['movement'] }}</p>
-        {% endif %}
-        <a href="/" class="button">Make Another Prediction</a>
-    </div>
-</body>
-</html> -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,6 +27,8 @@
         <p class="closed-price">{{ result['price_close'] }}</p>
         <p class="change">Change</p>
         <strong>{{ result['change_price'] }}</strong>
+        <p class="company">Company</p>
+        <p class="company-name">AAPL</p>
     </div>
     </section>
         <form class="future" action="/results" method="POST">
