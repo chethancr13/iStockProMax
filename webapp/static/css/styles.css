@@ -42,6 +42,72 @@ header p{
     text-shadow: 0 0 1em light-dark(rgba(0, 0, 0, 1), none);
 }
 
+.stock-ticker {
+    background: light-dark(#f8f9fa, #1a1a1a);
+    padding: 0.5em 0;
+    overflow: hidden;
+    position: relative;
+    border-bottom: 1px solid light-dark(#e9ecef, #2a2a2a);
+}
+
+.ticker-wrap {
+    width: 100%;
+    overflow: hidden;
+    height: 2.5em;
+    background-color: light-dark(#f8f9fa, #1a1a1a);
+    padding-left: 100%;
+    box-sizing: content-box;
+}
+
+.ticker {
+    display: inline-block;
+    white-space: nowrap;
+    padding-right: 100%;
+    animation: ticker 30s linear infinite;
+}
+
+.ticker:hover {
+    animation-play-state: paused;
+}
+
+.ticker-item {
+    display: inline-block;
+    padding: 0 2em;
+    font-size: 1.1em;
+    font-weight: 500;
+}
+
+.ticker-item .symbol {
+    font-weight: 600;
+    margin-right: 0.5em;
+}
+
+.ticker-item .price {
+    margin-right: 0.5em;
+}
+
+.ticker-item .change {
+    padding: 0.2em 0.5em;
+    border-radius: 0.2em;
+}
+
+.ticker-item .change.positive {
+    color: #00c853;
+}
+
+.ticker-item .change.negative {
+    color: #ff3d00;
+}
+
+@keyframes ticker {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+    100% {
+        transform: translate3d(-100%, 0, 0);
+    }
+}
+
 section{
     display: flex;
     padding: 2em 10em 0em 10em;
@@ -106,6 +172,16 @@ section{
     padding: 0em 10em 1em 10em;
     display: flex;
     flex-direction: column;
+}
+
+.tradingview-widget-container {
+    padding: 0 10em 2em 10em;
+    background-color: light-dark(white, #1a1a1a);
+}
+
+.tradingview-widget-container iframe {
+    border-radius: 0.5em;
+    box-shadow: 0 0 1em light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3));
 }
 
 .future h2{
