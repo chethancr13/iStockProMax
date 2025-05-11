@@ -9,6 +9,8 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait 
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait 
+from selenium.webdriver.support import expected_conditions as EC
 
 # Keep Chrome from exiting instantly
 chrome_options = webdriver.ChromeOptions()
@@ -17,6 +19,21 @@ chrome_options.add_experimental_option("detach", True)
 driver = webdriver.Chrome(options=chrome_options)
 driver.get("https://investor.apple.com/stock-price/")
 
+# Wait for the element to appear on the page
+try:
+    data = WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located((By.XPATH, '//*[@id="_ctrl0_ctl42_divModuleContainer"]/div/div/div/div[2]/div[2]/span'))
+    )
+    change = WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located((By.XPATH, '//*[@id="_ctrl0_ctl42_divModuleContainer"]/div/div/div/div[2]/div[3]/span/span'))
+    )
+
+    # Extract the text values of the stock price and change
+    dprice = data.text
+    dchange = change.text
+except Exception as e:
+    print(f"Error scraping data: {e}")
+    dprice, dchange = "Error", "Error"
 # Wait for the element to appear on the page
 try:
     data = WebDriverWait(driver, 10).until(
@@ -70,6 +87,7 @@ def index():
 @app.route('/results', methods=['POST'])
 def results():
     # Get user inputs from the form
+    # Get user inputs from the form
     company_name = request.form['company_name']
     start_year = request.form['start_year']
     end_year = request.form['end_year']
@@ -83,6 +101,7 @@ def results():
     end_date = f"{end_year}-12-31"
     
     # Fetch stock data using yfinance
+    # Fetch stock data using yfinance
     try:
         stock_data = yf.download(company_name, start=start_date, end=end_date)
         if stock_data.empty:
@@ -90,6 +109,7 @@ def results():
     except Exception as e:
         return render_template('results.html', result={"error": str(e)}, ticker_data=ticker_data)
     
+    # Prepare stock data features
     # Prepare stock data features
     stock_data.dropna(inplace=True)
     stock_data['Daily Return'] = stock_data['Close'].pct_change()
@@ -102,15 +122,18 @@ def results():
     stock_data.dropna(inplace=True)
 
     # Define features and target variable
+    # Define features and target variable
     features = ['Close', 'Volume', '5 Day Moving Avg', '10 Day Moving Avg', '20 Day Moving Avg', 'Volatility', 'Volume Change']
     X = stock_data[features]
     y = stock_data['Future Price']
     
     # Train a RandomForestRegressor model
+    # Train a RandomForestRegressor model
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
     model = RandomForestRegressor(n_estimators=200, max_depth=10, random_state=42)
     model.fit(X_train, y_train)
 
+    # Predict future stock price for the specified date
     # Predict future stock price for the specified date
     result = predict_stock_movement(stock_data, model, future_date, features, company_name)
     return render_template('results.html', result=result, ticker_data=ticker_data)
@@ -130,6 +153,7 @@ def predict_stock_movement(stock_data, model, input_date, features, company_name
             predicted_price = model.predict(features_data)[0]
 
         # Calculate the percentage change
+        # Calculate the percentage change
         last_price = stock_data['Close'].iloc[-1]
         percentage_change = float(((predicted_price - last_price) / last_price) * 100)
         movement = "Up" if percentage_change > 0 else "Down"
@@ -141,6 +165,7 @@ def predict_stock_movement(stock_data, model, input_date, features, company_name
             "percentage_change": round(percentage_change, 2),
             "movement": movement,
             "price_close": dprice,
+            "change_price": dchange
             "change_price": dchange
         }
     except Exception as e:
